@@ -30,6 +30,8 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
             sql.append(" id INTEGER PRIMARY KEY AUTOINCREMENT, ");
             sql.append(" nome VARCHAR(30) NOT NULL, ");
             sql.append(" descricao TEXT ");
+            sql.append(" favorito BIT ");
+            sql.append(" nota INTEGER ");
             sql.append(" ) ");
             db.execSQL(sql.toString());
 
