@@ -9,11 +9,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 import br.univates.appddm2022a.controller.LinguagemController;
 import br.univates.appddm2022a.model.Linguagem;
+import br.univates.appddm2022a.model.Nota;
 import br.univates.appddm2022a.tools.Globais;
 
 
@@ -25,6 +30,7 @@ public class LinguagensActivity extends AppCompatActivity {
     Linguagem objeto;
     LinguagemController controller;
     Context context;
+    Spinner spiNota;
     int id_linguagem;
 
     @Override
@@ -37,6 +43,7 @@ public class LinguagensActivity extends AppCompatActivity {
         chbFavorito = findViewById(R.id.chbFavorito_linguagem);
         txtNome = findViewById(R.id.txtNome_linguagem);
         txtDescricao = findViewById(R.id.txtDescricao_linguagem);
+        spiNota = findViewById(R.id.Spinner_linguagens);
         context = LinguagensActivity.this;
 
         Bundle extras = getIntent().getExtras();
@@ -57,7 +64,26 @@ public class LinguagensActivity extends AppCompatActivity {
         }else{
             id_linguagem = 0;
         }
+        ArrayList<Nota> notas = new ArrayList<Nota>();
+        notas.add(new Nota(0, "Sem Nota"));
+        notas.add(new Nota(1, "Nota 1"));
+        notas.add(new Nota(2, "Nota 2"));
+        notas.add(new Nota(3, "Nota 3"));
+        notas.add(new Nota(4, "Nota 4"));
+        notas.add(new Nota(5, "Nota 5"));
+
+
+        ArrayAdapter<Nota> adapter = new ArrayAdapter<>(context,
+                android.R.layout.simple_expandable_list_item_1, notas);
+
+        spiNota.setAdapter(adapter);
     }
+
+    //preenchendo o spinner
+    //String[] notas = getResources().getStringArray(R.array.notas);
+
+
+
 
     //Funcao para inflar o menu na tela
     @Override
@@ -93,6 +119,8 @@ public class LinguagensActivity extends AppCompatActivity {
 
             String nome = txtNome.getText().toString().trim();
             String descricao = txtDescricao.getText().toString().trim();
+
+            String nota = spiNota.getSelectedItem().toString();
 
             if(!nome.equals("") && !descricao.equals("")) {
 
