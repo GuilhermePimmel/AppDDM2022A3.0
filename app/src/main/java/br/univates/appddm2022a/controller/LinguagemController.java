@@ -60,6 +60,9 @@ public class LinguagemController {
             ContentValues valores = new ContentValues();
             valores.put("nome", objeto.getNome());
             valores.put("descricao", objeto.getDescricao());
+            valores.put("favorito", objeto.getFavorito());
+            valores.put("Nota", objeto.getNota());
+
 
             conexao.insertOrThrow(Tabelas.TB_LINGUAGENS, null,
                     valores);
@@ -78,6 +81,8 @@ public class LinguagemController {
             ContentValues valores = new ContentValues();
             valores.put("nome", objeto.getNome());
             valores.put("descricao", objeto.getDescricao());
+            valores.put("favorito", objeto.getFavorito());
+            valores.put("Nota", objeto.getNota());
 
             String[] parametros = new String[1];
             parametros[0] = String.valueOf(objeto.getId());
@@ -92,11 +97,11 @@ public class LinguagemController {
         }
     }
 
-    public boolean excluir(Linguagem objeto){
+    public boolean excluir(int id){
         try{
 
             String[] parametros = new String[1];
-            parametros[0] = String.valueOf(objeto.getId());
+            parametros[0] = String.valueOf(id);
 
             conexao.delete(Tabelas.TB_LINGUAGENS, "id = ?", parametros);
 

@@ -6,6 +6,7 @@ public class Linguagem {
     private String nome;
     private String descricao;
     private int favorito;
+    private int Nota;
 
 
     public int getId() {
@@ -39,6 +40,12 @@ public class Linguagem {
     public void setFavorito(int favorito) {
         this.favorito = favorito;
     }
+
+    public int getNota(){
+        return Nota;
+    }
+
+    public void setNota(int Nota) { this.Nota = Nota; }
 
     @Override
     public String toString(){

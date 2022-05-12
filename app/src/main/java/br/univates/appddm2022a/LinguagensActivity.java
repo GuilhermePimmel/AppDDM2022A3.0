@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -32,6 +33,8 @@ public class LinguagensActivity extends AppCompatActivity {
     Context context;
     Spinner spiNota;
     int id_linguagem;
+    Button btnExcluir;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,33 @@ public class LinguagensActivity extends AppCompatActivity {
         txtNome = findViewById(R.id.txtNome_linguagem);
         txtDescricao = findViewById(R.id.txtDescricao_linguagem);
         spiNota = findViewById(R.id.Spinner_linguagens);
+        btnExcluir = findViewById(R.id.btnExcluir_linguagem);
+
+        btnExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                controller = new LinguagemController(context);
+                controller.excluir(id_linguagem);
+            }
+        });
+
+
+
         context = LinguagensActivity.this;
+
+        ArrayList<Nota> notas = new ArrayList<>();
+        notas.add(new Nota(0, "Sem Nota"));
+        notas.add(new Nota(1, "Nota 1"));
+        notas.add(new Nota(2, "Nota 2"));
+        notas.add(new Nota(3, "Nota 3"));
+        notas.add(new Nota(4, "Nota 4"));
+        notas.add(new Nota(5, "Nota 5"));
+
+
+        ArrayAdapter<Nota> adapter_notas = new ArrayAdapter<>(context,
+                android.R.layout.simple_expandable_list_item_1, notas);
+
+        spiNota.setAdapter(adapter_notas);
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
@@ -59,24 +88,27 @@ public class LinguagensActivity extends AppCompatActivity {
                 }else{
                     chbFavorito.setChecked(true);
                 }
+
+                //preenchendo spinner da nota
+                for(int i = 0; i < spiNota.getAdapter().getCount(); i++){
+                    Nota nota = (Nota) spiNota.getItemAtPosition(i);
+                    if(nota.getId() == objeto.getNota()){
+                        spiNota.setSelection(i);
+                        break;
+                    }
+                }
+
             }
 
         }else{
             id_linguagem = 0;
         }
-        ArrayList<Nota> notas = new ArrayList<Nota>();
-        notas.add(new Nota(0, "Sem Nota"));
-        notas.add(new Nota(1, "Nota 1"));
-        notas.add(new Nota(2, "Nota 2"));
-        notas.add(new Nota(3, "Nota 3"));
-        notas.add(new Nota(4, "Nota 4"));
-        notas.add(new Nota(5, "Nota 5"));
 
+        if(id_linguagem == 0){
+            btnExcluir.setVisibility(View.GONE);
+            finish();
+        }
 
-        ArrayAdapter<Nota> adapter = new ArrayAdapter<>(context,
-                android.R.layout.simple_expandable_list_item_1, notas);
-
-        spiNota.setAdapter(adapter);
     }
 
     //preenchendo o spinner
