@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context=".CadastroActivity">
 
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,5 +20,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nome do cliente"/>
+
+    <EditText
+        android:id="@+id/txtDataNasc_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:hint="Data de Nascimento"
+        android:enabled="true"/>
+
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/txtTelefone_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:mask="+(__) _____-____"
+        app:maskCharacter="_"
+        app:maskStyle="completable"
+        android:hint="Telefone"/>
+
+    <Button
+        android:id="@+id/btnExcluir_cliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="EXCLUIR"/>
 
 </LinearLayout>

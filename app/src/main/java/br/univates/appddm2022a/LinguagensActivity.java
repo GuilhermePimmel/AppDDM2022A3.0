@@ -53,7 +53,12 @@ public class LinguagensActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 controller = new LinguagemController(context);
-                controller.excluir(id_linguagem);
+                boolean retorno = controller.excluir(id_linguagem);
+                if (retorno) {
+                    finish();
+                }else{
+                    Globais.exibirMensagem(context,"erro ao excluir");
+                }
             }
         });
 

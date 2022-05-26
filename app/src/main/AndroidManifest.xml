@@ -10,23 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppDDM2022A">
         <activity
-            android:name=".ListaClientesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CadastroActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LinguagensActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ListaLinguagensActivity"
-            android:exported="true">
+            android:name=".MenuActivity"
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity
+            android:name=".ListaClientesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".CadastroActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".LinguagensActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ListaLinguagensActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

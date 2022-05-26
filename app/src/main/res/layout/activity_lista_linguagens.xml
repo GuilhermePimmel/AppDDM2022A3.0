@@ -26,4 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <ImageView
+        android:id="@+id/imgFavorito_linguagem"
+        android:layout_width="42px"
+        android:layout_height="42px"/>
+
 </LinearLayout>
